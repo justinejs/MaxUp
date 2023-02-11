@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>LoanMe</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Muli:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Flattern - v4.9.1
+  * Template URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body onload = "check()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
+
+      <div class="logo">
+        <h1 class="text-light"><a href="index.html">MaxUp</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a  href="index.html">Home</a></li>
+          <li id = "navbar_signin"><a href="signin.html">Sign Up/Login</a></li>
+          <li id = "navbar_profile"><a href="profile.html">My Profile</a></li> 
+          <li><a class ="active" href="services.html">LoanMe</a></li>
+          <li><a href="pricing.html">Portfolio</a></li>
+          <!-- <li><a href="blog.html">Blog</a></li> -->
+          <li><a href="contact.html">Contact</a></li>
+          <li id = "logout"><a onclick = "logout()">Logout </a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>LoanMe</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>LoanMe</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container pt-3">
+
+            <div class="icon-box pb-4" data-aos="fade-up">
+              <div class="icon"><i class="bi bi-bank"></i></div>
+              <h4 class="title"><a href="cashloans.html">Investment Loan</a></h4>
+              <p class="description">Never worry about your investment capital anymore, loan with us now!</p>
+              <p id="showscore" class="fw-bold"></p>
+              <a href="myloandetails.html">See My Current Loans</a>
+            </div>
+   
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- Testing Loan Section -->
+
+    <section id="services" class="services p-0 mb-3">
+      <div class="container">
+
+        <div class="icon-box m-0" data-aos="fade-right">
+          <div class="row">
+
+            <div class="col-lg-6 "> 
+              <div class ="row"> 
+                <div class="col-lg-12 p-0"> 
+                <h4 class="m-0">Loan Value</h4>
+                </div>
+              </div>
+              </br> 
+            <div class="text-start ps-4"> 
+                  <div class ="row"> 
+                      <div class="col-lg-6 p-0"> 
+                        <form id="formTest">
+                        <label for="box1" class="p-2">Loan Value (SGD $)</label>
+                      </div> 
+
+                      <div class="col-lg-6"> 
+                        <!-- <input type="number" id="Number" name="Number" min="1" max="100"> -->
+                        <input class="form-control" id="box1" type="number" min="500" value="500" name="box1" onkeyup="insertValue(this.value);onetimeprocfee();monthlyrepayment()"/> 
+                        <p style="color:grey; font-size: x-small; text-align:left;" class="ms-2 mt-1">Minimum Amount $500</p>
+                        <p style="color:grey; font-size: x-small; text-align:left;" class="ms-2 mt-1" id="maxloanval"></p>
+                        </form>
+                      </div>
+                  </div>
+                  <!-- close loan value box -->
+                    <div class="row">
+                      <div class="col-lg-6 p-0"> 
+                        <label class="p-2">Term Loan (Year) </label>
+                      </div>
+
+                      <div class="col-lg-6">
+                          <select class="form-select text-secondary col-lg-4" aria-label="Default select example" id="box2" onchange="insertYear();intRates();monthlyrepayment()" >
+                              <option value="1" selected="selected">1 Year</option>
+                              <option value="2">2 Years</option>
+                              <option value="3">3 Years</option>
+                              <option value="4">4 Years</option>
+                              <option value="5">5 Years</option>
+                              <br>
+                          </select>
+                      </div>
+                    </div> 
+                    <!-- close term loan box -->
+                      <div class="col-lg-6">
+                        <p></p>
+                      </div>
+
+                    <div class="row">
+                      <div class="col-lg-6 p-0"> 
+                        <label class="p-2"> Account To Transfer To </label>
+                      </div>
+
+                      <div class="col-lg-6">
+                      
+                        <select class="form-select text-secondary col-lg-4" aria-label="Default select example" 
+                          id="accountSelect" >
+                          </select>
+                      </div>
+                    </div> 
+              </div>
+            </div> 
+            <!-- close col-lg-6 left -->
+
+            <div class="col-lg-6"> 
+              
+                <div class ="row"> 
+                    <div class="col-lg-12 ps-2"> 
+                    <h4 class="m-0">Loan Details</h4>
+                    </div>
+                </div>
+
+                </br> 
+
+                <div class="text-start">
+                  <p>Loan Value: <a id="LoanVal">500</a></p>
+                  
+                  <p>Loan Term: <a id="LoanYr">1 Year</a></p>
+
+                  <p>Interest Rate: <a id="intRate"> 3.50% </a> </p>
+
+                  <p class="mb-0">One time Processing Fee: <a id="OTPF">$ 5.00</a></p>
+                  <small style="color:grey; font-size: x-small;">1% of the Loan Amount</small>
+
+                  <p class="mt-2">Total Repayment: <a id="TotRep"> 675.00 </a> </p> 
+
+                  <p class="mt-2">Monthly Repayment: <a id="MonRep">56.25 </a> </p>
+                </div>
+           
+            </div>
+            <!-- close col-lg-6 right -->
+
+          </div>
+
+          <div class="container d-grid gap-2 d-md-flex mt-2 ms-6 ps-4 justify-content-md-end">
+            <button class="btn btn-outline-danger me-md-2" type="button">Cancel</button>
+            <a class="btn btn-outline-success" type="button" id="ApplyButton" href="captcha.html" class="text-success"> Apply</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+    <script>
+        function insertValue(newval){ 
+            var newval = document.getElementById("box1").value;
+            var loanholder = document.getElementById("LoanVal"); 
+            loanholder.innerHTML=`$ `+newval;
+        } 
+
+        function insertYear(){ 
+            var newval2 = document.getElementById("box2"); 
+            var valyr = newval2.value; 
+            document.getElementById("LoanYr").innerHTML=valyr + " Year(s)";
+        } 
+
+        function intRates(){
+          var yr = document.getElementById("box2").value;
+
+          if(yr == "1" || yr =="2"){
+            document.getElementById("intRate").innerHTML= "3.50%"} 
+          else if (yr == "3" || yr == "4" || yr =="5") {
+            document.getElementById("intRate").innerHTML= "3.00%"}
+        }
+
+        function onetimeprocfee(){ 
+          var x = document.getElementById("box1").value;
+          // var a = document.getElementById("OTPF"); 
+          var result = x * 0.01 ; 
+          var twodp = result.toFixed(2); 
+          document.getElementById("OTPF").innerHTML="$ " + twodp; 
+        }
+
+        function monthlyrepayment(){ 
+          var yr = document.getElementById("box2").value;
+          var principle = document.getElementById("box1").value;
+
+          var yrint = parseInt(yr) 
+          // interest = principle * annual int rate * year 
+          var int = 0.35; 
+          if(yr == "1" || yr =="2"){int=1.35} 
+          else if (yr == "3" || yr == "4" || yr =="5") {int=1.30}; 
+
+          // var calculate = ((principle * int)+principle)/(yrint*12); 
+          // var calculate = yrint*12;
+          var calculate = (principle*int)/(yrint); 
+          var calculate2 = (principle*int)/(yrint*12); 
+          document.getElementById("TotRep").innerHTML=calculate.toFixed(2);
+          document.getElementById("MonRep").innerHTML= calculate2.toFixed(2); 
+        }
+
+    //passing value input to captcha.html
+  // var form = document.getElementById("formTest");
+  ApplyButton.addEventListener('click', function(){ 
+    var inputTest = document.getElementById('box1').value;
+    var inputTest2 = document.getElementById("box2");
+    var numyear = inputTest2.value;   
+    
+    if(localStorage.getItem('valueToPass') == null){ 
+      localStorage.setItem('valueToPass',inputTest)}
+    
+    else if(localStorage.getItem('valueToPass') != null){ 
+    localStorage.setItem('valueToPass2',inputTest)}
+
+    
+    if(localStorage.getItem('yearToPass') == null){ 
+      localStorage.setItem('yearToPass', numyear +' year(s)'); 
+    }
+    else if(localStorage.getItem('yearToPass') != null){
+    localStorage.setItem('yearToPass2', numyear +' year(s)')}
+
+    
+    if(localStorage.getItem('intToPass') == null){ 
+      localStorage.setItem('intToPass', document.getElementById("intRate").innerHTML); 
+    }
+    else if(localStorage.getItem('intToPass') != null){
+      localStorage.setItem('intToPass2', document.getElementById("intRate").innerHTML)} 
+
+    
+    if(localStorage.getItem('OTPFtoPass') == null){ 
+      localStorage.setItem('OTPFtoPass',document.getElementById("OTPF").innerHTML);
+    }
+    else if(localStorage.getItem('OTPFtoPass') != null){
+      localStorage.setItem('OTPFtoPass2',document.getElementById("OTPF").innerHTML)} 
+
+    
+    if(localStorage.getItem('TotRepToPass')== null){ 
+      localStorage.setItem('TotRepToPass',document.getElementById("TotRep").innerHTML);
+    }
+    else if(localStorage.getItem('TotRepToPass')!= null){ 
+      localStorage.setItem('TotRepToPass2',document.getElementById("TotRep").innerHTML)}
+
+    
+    if(localStorage.getItem('MonRepToPass') == null){ 
+      localStorage.setItem('MonRepToPass',document.getElementById("MonRep").innerHTML);
+    }
+    else if(localStorage.getItem('MonRepToPass') != null){ 
+      localStorage.setItem('MonRepToPass2',document.getElementById("MonRep").innerHTML)} 
+
+   
+    if(sessionStorage.getItem('accountToXfer') == null){ 
+      sessionStorage.setItem('accountToXfer',document.getElementById("accountSelect").value)
+    } 
+    else if(sessionStorage.getItem('accountToXfer') != null){
+      sessionStorage.setItem('accountToXfer2',document.getElementById("accountSelect").value)}
+    
+
+       //alert section 
+       var amount = document.getElementById("box1").value; 
+       if(sessionStorage.getItem("creditscore") != null){  
+         var creditsc = sessionStorage.getItem("creditscore");  
+    
+         if(creditsc < 730){  
+           if(amount > 10000){ 
+             alert("Loan value is more than maximum"); 
+             window.location="services.html"; 
+           } 
+         } 
+         else if (creditsc > 739 && creditsc <800 ){  
+           if(amount > 20000){ 
+             alert("Loan value is more than maximum"); 
+           } 
+         } 
+         else{  
+           if(amount > 1000000){ 
+             alert("Loan value is more than maximum"); 
+           } 
+
+         } 
+       }
+       window.location="captcha.html, myloandetails.html, profile.html";   
+  })
+
+  function check(){
+        if(sessionStorage.getItem("username") != null){
+            document.getElementById("navbar_signin").style.display = "none";
+            document.getElementById("navbar_profile").style.display = "block";
+            document.getElementById("logout").style.display = "block";
+        }
+
+        else{
+          document.getElementById("navbar_signin").style.display = "block";
+          document.getElementById("navbar_profile").style.display = "none";
+          document.getElementById("logout").style.display = "none";
+        }
+
+        getAccounts()}
+
+
+  if(sessionStorage.getItem("creditscore") != null){ 
+    var creditsc = sessionStorage.getItem("creditscore"); 
+    document.getElementById("showscore").innerHTML = "Your Credit Score is: "+creditsc; 
+    localStorage.setItem('maxamt', (10000)); 
+
+    if(creditsc < 730){ 
+      // document.getElementById("box1").max=maxamt;  
+      if(localStorage.getItem('valueToPass') == null){ 
+      localStorage.setItem('maxamt', (10000)); 
+      }
+      else if(localStorage.getItem('valueToPass') != null){
+      localStorage.setItem('maxamt', parseInt(localStorage.getItem('maxamt'))-parseInt(localStorage.getItem('valueToPass')))} 
+      document.getElementById("maxloanval").innerHTML = "Maximum Amount $"+localStorage.getItem('maxamt');
+    }
+    else if (creditsc > 739 && creditsc <800 ){ 
+      maxamt = 20000; 
+      document.getElementById("box1").max=maxamt;  
+      document.getElementById("maxloanval").innerHTML = "Maximum Amount $"+localStorage.getItem('maxamt').toLocaleString();
+    }
+    else{ 
+      maxamt = 1000000;
+      document.getElementById("box1").max=maxamt;  
+      document.getElementById("maxloanval").innerHTML = "Maximum Amount $"+localStorage.getItem('maxamt').toLocaleString();
+    }
+  }
+
+  function getAccounts(){
+    userID = sessionStorage.getItem("userID")
+    PIN = sessionStorage.getItem("pin")
+
+    var serviceName = "getCustomerAccounts";
+
+    var headerObj = {
+      Header: {
+        serviceName: serviceName,
+        userID: userID,
+        PIN: PIN,
+        OTP: "999999"
+      }
+    };
+
+    var header = JSON.stringify(headerObj);
+
+       function getRecordCount(AccountList) {
+
+           if (Object.keys(AccountList).length === 0){
+
+               showErrorModal("Customer has no accounts.");
+
+               return 0;
+
+           }
+
+           if (AccountList.account.length === undefined)
+
+               return 1;
+
+           return AccountList.account.length;
+
+       }
+
+    function getApiURL(){
+    var ApiURL  = "http://tbankonline.com/SMUtBank_API/Gateway";
+    return ApiURL;
+  }
+      // setup http request
+
+      var xmlHttp = new XMLHttpRequest();
+
+      if (xmlHttp === null){
+
+          alert("Browser does not support HTTP request.");
+
+          return;
+
+      }
+
+      xmlHttp.open("POST", getApiURL()+"?Header="+header, true);
+
+      xmlHttp.timeout = 5000;
+
+      // setup http event handlers
+
+      xmlHttp.onreadystatechange = function() {
+
+          if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+
+              responseObj = JSON.parse(xmlHttp.responseText);
+
+              serviceRespHeader = responseObj.Content.ServiceResponse.ServiceRespHeader;
+
+              globalErrorID = serviceRespHeader.GlobalErrorID;
+
+              if (globalErrorID === "010041"){
+                  return;
+
+              }
+
+              else if (globalErrorID !== "010000"){
+                  console.log(serviceRespHeader.ErrorDetails);
+                  return;
+              }
+
+
+              AccountList = responseObj.Content.ServiceResponse.AccountList;
+              account = AccountList.account;
+              console.log(account)
+              var recordCount = getRecordCount(AccountList);
+
+              var htmlcode = "";
+            
+
+              for(var i = 0; i < recordCount; i++){
+
+                  var acc = (recordCount===1)?account:account[i];
+                  if(acc.productID == "101"){
+                  htmlcode += "<option value=" + acc.accountID + ">"
+
+                  htmlcode += acc.accountID + "</option>"
+
+              }
+            }
+
+              document.getElementById("accountSelect").innerHTML  = htmlcode;
+
+            
+
+          }
+
+      };
+
+      xmlHttp.ontimeout = function (e) {
+
+          showErrorModal("Timeout invoking API.");
+
+          return;
+
+      };                                        
+
+
+
+      // send the http request
+
+      xmlHttp.send();
+
+  }
+    </script>
+
+</body>
+
+</html>
